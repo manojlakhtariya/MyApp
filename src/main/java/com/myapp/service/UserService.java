@@ -10,6 +10,8 @@ import java.util.Optional;
 @Service
 public interface UserService {
     User create(User user);
+
     List<User> findAllUsers();
+
     Optional<User> findById(Long id);
 }

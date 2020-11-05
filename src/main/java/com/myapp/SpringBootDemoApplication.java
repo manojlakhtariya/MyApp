@@ -9,17 +9,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication
-public class SpringBootDemoApplication
-{
-	@Autowired
-	private ObjectMapper objectMapper;
+public class SpringBootDemoApplication {
+    @Autowired
+    private ObjectMapper objectMapper;
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootDemoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootDemoApplication.class, args);
+    }
 
-	@PostConstruct
-	public void setUp() {
-		objectMapper.registerModule(new JavaTimeModule());
-	}
+    @PostConstruct
+    public void setUp() {
+        objectMapper.registerModule(new JavaTimeModule());
+    }
 }

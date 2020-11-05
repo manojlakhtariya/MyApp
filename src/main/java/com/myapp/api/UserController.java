@@ -20,15 +20,14 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService){
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @PostMapping("/users")
-    public ResponseEntity<UserResponse> create(@Valid @RequestBody UserRequest request)
-    {
+    public ResponseEntity<UserResponse> create(@Valid @RequestBody UserRequest request) {
         User newUser = userService.create(getUserFromRequest(request));
-        return new ResponseEntity<>(new UserResponse(newUser.getId(), newUser.getFirstName(), newUser.getLastName(), newUser.getEmail(), newUser.getPhoneNumber()) ,HttpStatus.OK);
+        return new ResponseEntity<>(new UserResponse(newUser.getId(), newUser.getFirstName(), newUser.getLastName(), newUser.getEmail(), newUser.getPhoneNumber()), HttpStatus.OK);
 
     }
 
@@ -39,11 +38,10 @@ public class UserController {
 
     @GetMapping("/users/{user_id}")
     @ResponseBody
-    public ResponseEntity<Optional<User>> findByUserId(@PathVariable("user_id") Long userId)
-    {
+    public ResponseEntity<Optional<User>> findByUserId(@PathVariable("user_id") Long userId) {
 
         Optional<User> user = userService.findById(userId);
-        if(!user.isPresent()) {
+        if (!user.isPresent()) {
             throw new RecordNotFoundException("User", userId);
         }
         return new ResponseEntity<Optional<User>>(user, HttpStatus.OK);

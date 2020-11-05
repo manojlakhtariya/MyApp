@@ -1,6 +1,7 @@
 package com.myapp.service;
 
 import com.myapp.domain.Appointment;
+import com.myapp.error.BadRequestException;
 import com.myapp.error.RecordNotFoundException;
 import com.myapp.repository.AppointmentRepository;
 import org.springframework.data.domain.Page;
@@ -9,12 +10,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import com.myapp.error.BadRequestException;
 
 import java.time.LocalDate;
 
 @Service
-public class AppointmentServiceImpl implements AppointmentService{
+public class AppointmentServiceImpl implements AppointmentService {
 
     private AppointmentRepository appointmentRepository;
 
@@ -22,11 +22,9 @@ public class AppointmentServiceImpl implements AppointmentService{
         this.appointmentRepository = appointmentRepository;
     }
 
-
     @Override
     public Appointment createAppointment(Appointment appointment) {
-        //TO-DO Add factory to create appointment object.
-        if(appointmentRepository.conflict(appointment.getAttendees(),appointment.getDate(), appointment.getStartTime(), appointment.getEndTime())) {
+        if (appointmentRepository.conflict(appointment.getAttendees(), appointment.getDate(), appointment.getStartTime(), appointment.getEndTime()).intValue() >= 1) {
             throw new BadRequestException("Users have conflict");
         }
         return appointmentRepository.save(appointment);

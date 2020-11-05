@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 public class DemoApplicationTests extends AbstractContainerTest {
 
-  @Test
-  void contextLoads() {}
+    @Test
+    void contextLoads() {
+    }
 }

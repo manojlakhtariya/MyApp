@@ -1,7 +1,6 @@
 package com.myapp.domain;
 
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -26,19 +25,21 @@ public class Appointment {
     private LocalTime endTime;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private User organizer;
 
     @NotNull
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private Set<User> attendees = new TreeSet<>();
 
     private AppointmentStatus appointmentStatus;
+
     public enum AppointmentStatus {SCHEDULED, CANCELLED}
 
     public String description;
 
-    public Appointment(){}
+    public Appointment() {
+    }
 
     public Appointment(LocalDate date, LocalTime startTime, LocalTime endTime, User organizer, Set<User> attendees, AppointmentStatus appointmentStatus, String description) {
         this.date = date;

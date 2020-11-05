@@ -31,17 +31,23 @@ public class User {
     @NotNull
     private String phoneNumber;
 
-    public User() {}
+    public User() {
+    }
 
     @JsonCreator
     public User(@JsonProperty("firstName") String firstName,
                 @JsonProperty("lastName") String lastName,
                 @JsonProperty("email") String email,
-                @JsonProperty("phoneNumber") String phoneNumber){
+                @JsonProperty("phoneNumber") String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    @JsonProperty("id")
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

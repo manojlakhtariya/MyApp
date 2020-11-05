@@ -38,9 +38,9 @@ public class AppointmentController {
     @GetMapping("/appointments")
     public Page<Appointment> listAllAppointments(@RequestParam(required = false) Long user_id, @RequestParam(required = false)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate minDate, @RequestParam(required = false)
-                                                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                                                                                 LocalDate maxDate, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer pageSize) {
-        return appointmentService.listAllAppointments(user_id,maxDate,maxDate,page,pageSize);
+                                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                                                         LocalDate maxDate, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer pageSize) {
+        return appointmentService.listAllAppointments(user_id, maxDate, maxDate, page, pageSize);
     }
 
     private Appointment getAppointmentFromRequest(AppointmentRequest appointmentRequest) {

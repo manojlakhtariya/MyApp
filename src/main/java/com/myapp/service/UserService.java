@@ -1,17 +1,14 @@
 package com.myapp.service;
 
 import com.myapp.domain.User;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 
 @Service
 public interface UserService {
-    User create(User user);
 
-    List<User> findAllUsers();
+  User create(User user);
 
-    Optional<User> findById(Long id);
+  Optional<User> findById(Long id);
 }
